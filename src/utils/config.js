@@ -13,4 +13,4 @@ export const rrfConfig = {
   useFirestoreForProfile: true, // Store in Firestore instead of Real Time DB
 };
 
-export default { firebase, rrfConfig };
+// export default { firebase, rrfConfig };
