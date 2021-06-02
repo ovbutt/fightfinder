@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 const CustomButton = ({
-  color,
+  colorScheme,
   onClick,
   size,
   label,
@@ -13,19 +13,17 @@ const CustomButton = ({
   loadingText,
 }) => {
   return (
-    <ButtonGroup>
-      <Button
-        colorScheme={color}
-        onClick={onClick}
-        size={size}
-        variant={variant}
-        isLoading={isLoading}
-        spinnerPlacement={spinnerPlacement}
-        loadingText={loadingText}
-      >
-        {label}
-      </Button>
-    </ButtonGroup>
+    <Button
+      colorScheme={`${colorScheme}`}
+      onClick={onClick}
+      size={size}
+      variant={variant}
+      isLoading={isLoading}
+      spinnerPlacement={spinnerPlacement}
+      loadingText={loadingText}
+    >
+      {label}
+    </Button>
   );
 };
 
@@ -41,7 +39,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  color: "Teal",
+  colorScheme: "black",
   onClick: () => alert("Button Clicked"),
   size: "md",
   label: "Button",

@@ -28,10 +28,6 @@ const Navbar = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  //   const handleChange = (event) => {
-  //     setAuth(event.target.checked);
-  //   };
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,18 +38,6 @@ const Navbar = (props) => {
 
   return (
     <div className={classes.root}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={auth}
-              onChange={handleChange}
-              aria-label="login switch"
-            />
-          }
-          label={auth ? "Logout" : "Login"}
-        />
-      </FormGroup> */}
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
