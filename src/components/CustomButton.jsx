@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Button } from "@chakra-ui/react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button } from '@chakra-ui/react';
 
 const CustomButton = ({
   colorScheme,
@@ -11,6 +11,7 @@ const CustomButton = ({
   isLoading,
   spinnerPlacement,
   loadingText,
+  className,
 }) => {
   return (
     <Button
@@ -21,6 +22,7 @@ const CustomButton = ({
       isLoading={isLoading}
       spinnerPlacement={spinnerPlacement}
       loadingText={loadingText}
+      className={className}
     >
       {label}
     </Button>
@@ -29,24 +31,26 @@ const CustomButton = ({
 
 Button.propTypes = {
   color: PropTypes.string,
-  onclick: PropTypes.func,
+  onClick: PropTypes.func,
   size: PropTypes.string,
   label: PropTypes.string,
   variant: PropTypes.string,
   isLoading: PropTypes.bool,
   spinnerPlacement: PropTypes.string,
   loadingText: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Button.defaultProps = {
-  colorScheme: "black",
-  onClick: () => alert("Button Clicked"),
-  size: "md",
-  label: "Button",
-  variant: "solid",
+  colorScheme: 'black',
+  onClick: () => alert('Button Clicked'),
+  size: 'md',
+  label: 'Button',
+  variant: 'solid',
   isLoading: false,
-  spinnerPlacement: "start",
-  loadingText: "Loading",
+  spinnerPlacement: 'start',
+  loadingText: 'Loading',
+  className: '',
 };
 
 export default CustomButton;

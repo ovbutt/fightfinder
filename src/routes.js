@@ -10,11 +10,12 @@ import { adminPaths } from './utils/const';
 // import Spinner from "components/Spinner";
 
 const Login = React.lazy(() => import('./pages/auth/Login.jsx'));
+const Signup = React.lazy(() => import('./pages/auth/Signup'));
 const Admin = React.lazy(() => import('./pages/admin/Home.jsx'));
 
 function Router() {
   // const dispatch = useDispatch();
-  const auth = false;
+  const auth = true;
   const { uid } = useSelector((state) => state.firebase.auth);
 
   // useEffect(() => {
@@ -36,6 +37,7 @@ function Router() {
           <Switch>
             {/* TODO: Change default route component to user home page */}
             <Route path="/" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
             <Route path="/admin" exact component={Login} />
             {/* <Redirect to="/" /> */}
           </Switch>
@@ -43,7 +45,7 @@ function Router() {
           <CoreLayout>
             <Switch>
               <Route exact path={adminPaths.adminHome} component={Admin} />
-              <Redirect to={adminPaths.adminHome} />
+              {/* <Redirect to={adminPaths.adminHome} /> */}
             </Switch>
           </CoreLayout>
         )}

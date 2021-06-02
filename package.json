@@ -23,6 +23,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-google-button": "^0.7.2",
+    "react-hook-form": "^7.7.1",
     "react-redux": "^7.2.4",
     "react-redux-firebase": "^3.10.0",
     "react-router-dom": "^5.2.0",
@@ -38,8 +39,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettify":"prettier --write",
-    "lint":"eslint --fix src/"
+    "prettify": "prettier --write",
+    "lint": "eslint --fix src/"
   },
   "eslintConfig": {
     "extends": [
@@ -66,10 +67,14 @@
   },
   "husky": {
     "hooks": {
-        "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
-},
-"lint-staged": {
-    "src/**/*.{js,jsx}": ["eslint", "pretty-quick — staged", "git add"]
-}
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "eslint",
+      "pretty-quick — staged",
+      "git add"
+    ]
+  }
 }
