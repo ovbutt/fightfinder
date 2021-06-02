@@ -1,3 +1,3 @@
-import CoreLayout from './CoreLayout'
+import { default as CoreLayout } from "./CoreLayout";
 
-export default CoreLayout
+export { CoreLayout };

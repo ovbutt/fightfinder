@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from "@chakra-ui/react";
-import { CustomCheckBox, IconBtn } from "./index";
+import { Table, Thead, Tbody, Tfoot, Tr, Th, Td} from "@chakra-ui/react";
+import {  CustomCheckBox, IconBtn } from "./index";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 
 const EventsTable = ({ data }) => {
   return (
     <Table variant="simple">
-      {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
+      {/* <TableCaption placement="top"><Heading> Events Created</Heading></TableCaption> */}
       <Thead>
         <Tr>
           <Th>#</Th>
@@ -38,11 +38,7 @@ const EventsTable = ({ data }) => {
         ))}
       </Tbody>
       <Tfoot>
-        {/* <Tr>
-          <Th>To convert</Th>
-          <Th>into</Th>
-          <Th isNumeric>multiply by</Th>
-        </Tr> */}
+      {/* <BasicPagination /> */}
       </Tfoot>
     </Table>
   );
