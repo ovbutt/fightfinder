@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react';
 import { CustomCheckBox, IconBtn } from '../index';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import ConfirmDialogue from '../ConfirmDialogue';
+import { ConfirmDialogue } from '..';
 import { useFirestore } from 'react-redux-firebase';
+import { CreateEventModal } from '../../containers';
 
 const EventsTable = ({ data }) => {
   const [confirmDialogue, setConfirmDialogue] = useState(false);
-  const [selectedId, setSelectedId] = useState('');
+  const [selectedItem, setSelectedItem] = useState('');
+  const [eventModalOpen, setEventModalOpen] = useState(false);
+
   const firestore = useFirestore();
 
   function deleteEvent(id) {
@@ -38,14 +41,21 @@ const EventsTable = ({ data }) => {
               <CustomCheckBox isChecked={item.carousel} isDisabled={true} />
             </Td>
             <Td>
-              <IconBtn colorScheme="blue" icon={<EditIcon />} />
+              <IconBtn
+                colorScheme="blue"
+                icon={<EditIcon />}
+                onClick={() => {
+                  setSelectedItem(item);
+                  setEventModalOpen(true);
+                }}
+              />
               <IconBtn
                 className="ml-3"
                 colorScheme="red"
                 icon={<DeleteIcon />}
                 onClick={() => {
                   setConfirmDialogue(true);
-                  setSelectedId(item.id);
+                  setSelectedItem(item);
                 }}
               />
             </Td>
@@ -56,7 +66,12 @@ const EventsTable = ({ data }) => {
       <ConfirmDialogue
         isOpen={confirmDialogue}
         onClose={() => setConfirmDialogue(false)}
-        rightButtonAction={() => deleteEvent(selectedId)}
+        rightButtonAction={() => deleteEvent(selectedItem.id)}
+      />
+      <CreateEventModal
+        data={selectedItem}
+        isOpen={eventModalOpen}
+        onClose={() => setEventModalOpen(false)}
       />
     </Table>
   );
