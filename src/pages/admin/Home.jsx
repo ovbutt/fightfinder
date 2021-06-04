@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EventsTable, CustomButton } from '../../components';
 import { Heading } from '@chakra-ui/react';
+import { CreateEventModal } from '../../containers';
 
 const tableData = [
   {
@@ -41,16 +42,23 @@ const tableData = [
 ];
 
 const Home = () => {
+  const [eventModalOpen, setEventModalOpen] = useState(false);
+
   return (
     <>
       <div style={{ float: 'right', margin: 20 }}>
-        <CustomButton label="Create Event" colorScheme="green" />
+        <CustomButton
+          label="Create Event"
+          colorScheme="green"
+          onClick={() => setEventModalOpen(true)}
+        />
       </div>
       <br></br>
       <div>
         <Heading style={{ marginLeft: 20 }}>Events Created</Heading>
         <EventsTable data={tableData} />
       </div>
+      <CreateEventModal isOpen={eventModalOpen} onClose={() => setEventModalOpen(false)} />
     </>
   );
 };

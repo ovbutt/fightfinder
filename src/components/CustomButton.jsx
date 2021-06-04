@@ -12,6 +12,7 @@ const CustomButton = ({
   spinnerPlacement,
   loadingText,
   className,
+  style,
 }) => {
   return (
     <Button
@@ -23,6 +24,7 @@ const CustomButton = ({
       spinnerPlacement={spinnerPlacement}
       loadingText={loadingText}
       className={className}
+      style={style}
     >
       {label}
     </Button>

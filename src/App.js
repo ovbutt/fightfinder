@@ -12,9 +12,11 @@ import { createFirestoreInstance } from 'redux-firestore';
 // import Home from "./Home";
 import configureStore from './redux/store';
 import { firebase as fbConfig, rrfConfig } from './utils/config';
-import './App.css';
+// import './App.css';
 import Router from './routes';
 import { ChakraProvider } from '@chakra-ui/react';
+import DateFnsUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
 const initialState = window && window.__INITIAL_STATE__; // set initial state here
 const store = configureStore(initialState);
@@ -30,9 +32,11 @@ export default function App() {
         dispatch={store.dispatch}
         createFirestoreInstance={createFirestoreInstance}
       >
-        <ChakraProvider>
-          <Router />
-        </ChakraProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <ChakraProvider>
+            <Router />
+          </ChakraProvider>
+        </MuiPickersUtilsProvider>
       </ReactReduxFirebaseProvider>
     </Provider>
   );

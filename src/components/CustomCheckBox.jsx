@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Checkbox } from "@chakra-ui/react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Checkbox } from '@chakra-ui/react';
 
-const CustomCheckBox = ({ isChecked, isDisabled }) => {
+const CustomCheckBox = ({ isChecked, isDisabled, label, onChange }) => {
   return (
-    <Checkbox isChecked={isChecked} isDisabled={isDisabled}>
-      Checkbox
+    <Checkbox isChecked={isChecked} isDisabled={isDisabled} onChange={onChange}>
+      {label}
     </Checkbox>
   );
 };
