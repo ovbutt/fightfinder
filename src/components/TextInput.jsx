@@ -14,6 +14,7 @@ const TextInput = ({
   isReadOnly,
   value,
   onChange,
+  required,
 }) => {
   return (
     <InputGroup>
@@ -30,6 +31,7 @@ const TextInput = ({
         isReadOnly={isReadOnly}
         value={value}
         onChange={onChange}
+        required={required}
         // multiple={true}
         // noOfLines={5}
       />

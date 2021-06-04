@@ -3,6 +3,7 @@ import { CustomCheckBox, CustomModal, DateSelector, TextInput } from '../../comp
 import { ImagePicker } from '../../containers';
 import { Textarea } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
+import { useFirestore } from 'react-redux-firebase';
 
 const CreateEventModal = ({ isOpen, onOpen, onClose }) => {
   const [title, setTitle] = useState('');
@@ -11,11 +12,32 @@ const CreateEventModal = ({ isOpen, onOpen, onClose }) => {
   const [date, setDate] = useState('');
   const [pictures, setPictures] = useState([]);
   const [carousel, setCarousel] = useState(false);
+  const firestore = useFirestore();
 
   const onDrop = (picture) => {
     console.log(picture);
     setPictures(picture);
   };
+
+  function addTodo() {
+    const event = {
+      title,
+      location,
+      date,
+      description,
+      carousel,
+    };
+    return firestore
+      .collection('events')
+      .add(event)
+      .then((result) => {
+        console.log(result);
+        onClose();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const onSubmit = () => {
     if (!title) {
@@ -35,8 +57,8 @@ const CreateEventModal = ({ isOpen, onOpen, onClose }) => {
       return;
     }
 
-    alert('Event Created');
-    onClose();
+    // alert('Event Created');
+    addTodo();
   };
 
   return (

@@ -1,22 +1,22 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { IconButton } from "@chakra-ui/react"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { IconButton } from '@chakra-ui/react';
 
-const IconBtn = ({colorScheme, icon}) => {
-    return (
-        <IconButton
-        colorScheme = {colorScheme}
-        // aria-label="Search database"
-        icon={icon}
-        size="sm"
-        onClick={() => alert("Button clicked")}
-      />
-    )
-}
+const IconBtn = ({ colorScheme, icon, onClick, className }) => {
+  return (
+    <IconButton
+      colorScheme={colorScheme}
+      // aria-label="Search database"
+      icon={icon}
+      size="sm"
+      onClick={onClick}
+      className={className}
+    />
+  );
+};
 
 IconBtn.propTypes = {
-    colorScheme: PropTypes.string,
+  colorScheme: PropTypes.string,
+};
 
-}
-
-export default IconBtn
+export default IconBtn;

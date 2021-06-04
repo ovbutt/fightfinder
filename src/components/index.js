@@ -6,6 +6,8 @@ import { default as BasicPagination } from './BasicPagination';
 import { default as TextInput } from './TextInput';
 import { default as CustomModal } from './CustomModal';
 import { default as DateSelector } from './DateSelector';
+import { default as CustomSpinner } from './CustomSpinner';
+import { default as ConfirmDialogue } from './ConfirmDialogue';
 import { default as EventsTable } from './admin/EventsTable.jsx';
 
 export {
@@ -18,4 +20,6 @@ export {
   TextInput,
   CustomModal,
   DateSelector,
+  CustomSpinner,
+  ConfirmDialogue,
 };

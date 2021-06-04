@@ -13,6 +13,7 @@ const CustomButton = ({
   loadingText,
   className,
   style,
+  type,
 }) => {
   return (
     <Button
@@ -25,6 +26,7 @@ const CustomButton = ({
       loadingText={loadingText}
       className={className}
       style={style}
+      type={type}
     >
       {label}
     </Button>
@@ -45,7 +47,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   colorScheme: 'black',
-  onClick: () => alert('Button Clicked'),
+  onClick: () => {},
   size: 'md',
   label: 'Button',
   variant: 'solid',

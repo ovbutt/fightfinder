@@ -1,16 +1,64 @@
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { CustomButton, TextInput } from '../../components';
+import { useFirebase } from 'react-redux-firebase';
+import { regex } from '../../utils/const';
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const firebase = useFirebase();
+
+  const onSubmit = () => {
+    if (!email) {
+      alert('Email cannot be empty');
+      return;
+    }
+    if (!regex.email.test(String(email).toLowerCase())) {
+      alert('Please enter valid email');
+      return;
+    }
+    if (!password) {
+      alert('Password cannot be empty');
+      return;
+    }
+
+    const credentials = {
+      email,
+      password,
+    };
+
+    firebase
+      .login(credentials)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const googleLogin = () => {
+    firebase
+      .login({ provider: 'google', type: 'popup' })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const facebookLogin = () => {
+    firebase
+      .login({ provider: 'facebook', type: 'popup' })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div
@@ -23,42 +71,42 @@ const Login = () => {
             Fight Finder
           </Typography>
           <Typography variant="h6" className="my-2">
-            Login
+            LogIn
           </Typography>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {/* <TextInput {...register('firstName')} /> register an input */}
-            <TextInput
-              {...register('username', { required: true })}
-              className="mt-3"
-              placeholder="email"
-              type="email"
-            />
-            {errors.lastName && <p>Last name is required.</p>}
-            <TextInput
-              {...register('password', { required: true, pattern: /\d+/ })}
-              className="mt-2"
-              placeholder="password"
-              type="password"
-            />
-            {errors.age && <p>Please enter number for age.</p>}
-            <CustomButton
-              label="Login"
-              type="submit"
-              colorScheme="green"
-              className="w-100 mt-4"
-              onClick={() => handleSubmit(onSubmit)}
-            />
-          </form>
+          <TextInput
+            className="mt-3"
+            placeholder="email"
+            type="email"
+            isRequired={true}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextInput
+            className="mt-2"
+            placeholder="password"
+            type="password"
+            isRequired={true}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <CustomButton
+            label="LogIn"
+            colorScheme="green"
+            className="w-100 mt-4"
+            onClick={() => onSubmit()}
+          />
+
           <div>
             <p className="mt-2">OR</p>
             <CustomButton
-              label="Login with Google"
+              label="SignIn with Google"
               type="submit"
               colorScheme="red"
               className="w-100 mt-2"
+              onClick={() => onSubmit()}
             />
             <CustomButton
-              label="Login with Facebook"
+              label="SignIn with Facebook"
               type="submit"
               colorScheme="blue"
               className="w-100 mt-2"
